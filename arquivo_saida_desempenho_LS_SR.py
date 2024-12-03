@@ -1,6 +1,6 @@
 # EXPERIMENTO ATLAS - Reconstrução de sinal - Métodos dos Mínimos Quadrados Sem restrição (Least Squares - LS) - Estimação da amplitude, fase ou pedestal.
 # Autor: Guilherme Barroso Morett.
-# Data: 08 de setembro de 2024.
+# Data: 03 de dezembro de 2024.
 
 # Objetivo do código: cálculo do desempenho do método LS sem restrição para a estimação da amplitude, fase ou pedestal pela validação cruzada K-Fold.
 
@@ -56,7 +56,7 @@ from termcolor import colored
 from metodo_LS_SR import *
 
 # Impressão de uma linha que representa o início do programa.
-print("\n---------------------------------------------------------------------------------------------------------------------------------------\n")
+print("\n-------------------------------------------------------------------------------------------------------------------------------------\n")
 
 # Título do programa.
 
@@ -66,7 +66,7 @@ titulo_programa = colored("Geração de arquivos de saída pela técnica de vali
 # Impressão do título do programa.
 print(titulo_programa)
 
-### -------------------------- 1) INSTRUÇÃO PARA SALVAR OS DADOS ESTATÍSTICOS DO K-FOLD PELO MÉTODO LS SEM RESTRIÇÃO --------------------------- ###
+### ------------------------ 1) INSTRUÇÃO PARA SALVAR OS DADOS ESTATÍSTICOS DO K-FOLD PELO MÉTODO LS SEM RESTRIÇÃO --------------------------- ###
 
 # Definição da instrução para salvar os dados estatísticos do desempenho do método LS sem restrição em arquivo de saída.
 def arquivo_saida_dados_desempenho_LS_SR(parametro, n_ocupacao, n_janelamento_ideal, media_dado_desempenho, var_dado_desempenho, DP_dado_desempenho, mecanismo_desempenho):
@@ -104,21 +104,55 @@ def arquivo_saida_dados_desempenho_LS_SR(parametro, n_ocupacao, n_janelamento_id
 
     # Comando para tentar realizar uma operação.
     try:
-        # Abre o arquivo de saída no modo de acrescentar (append).
+        
+        # Abre o arquivo presente no endereço caminho_arquivo_saida como a variável arquivo_saida_dados_estatisticos no modo leitura.
+        with open(caminho_arquivo_saida, 'r') as arquivo_saida_dados_estatisticos:
+            
+            # A variável primeiro_caractere recebe o primeiro elemento presente no arquivo_saida_dados_estatisticos.
+            primeiro_caractere = arquivo_saida_dados_estatisticos.read(1)
+            
+            # Caso não haja nada na variável primeiro_caractere.
+            if not primeiro_caractere:
+                
+                # Abre o arquivo presente no endereço caminho_arquivo_saida como file no modo acrescentar.
+                with open(caminho_arquivo_saida, 'a') as file:
+                    
+                    # Escreve o título no arquivo file.
+                    file.write(titulo_arquivo_saida)
+                    
+    # Excessão de erro ao encontrar o arquivo no caminho fornecido.               
+    except FileNotFoundError:
+        
+       # Abre o arquivo presente no endereço caminho_arquivo_saida como file no modo escrita.
+        with open(caminho_arquivo_saida, 'w') as file:
+            
+            # Escreve o título no arquivo file.
+            file.write(titulo_arquivo_saida)
+
+    # Comando para tentar realizar uma operação.
+    try:
+        
+        # Abre o arquivo presente no endereço caminho_arquivo_saida como arquivo_saida_dados_estatisticos no modo acrescentar.
         with open(caminho_arquivo_saida, "a") as arquivo_saida_dados_estatisticos:
-            # Escrita dos dados de interesse.
+            
+            # Escrita dos dados de interesse no arquivo_saida_dados_estatisticos.
             arquivo_saida_dados_estatisticos.write(f"{n_ocupacao},{media_dado_desempenho},{var_dado_desempenho},{DP_dado_desempenho}\n")
+    
     # Excessão.
     except Exception as e:
+        
         # Impressão de mensagem de alerta.
         print("Ocorreu um erro ao atualizar o arquivo de saída dos dados estatísticos:", str(e))
 
-### -------------------------------------------------------------------------------------------------------------------------------------------- ###
+### ------------------------------------------------------------------------------------------------------------------------------------------ ###
 
-### -------------------------- 2) FUNÇÃO PARA O CÁLCULO DO ERRO MÉDIO DE ESTIMAÇÃO (MEAN SQUARED ERROR - EME) ---------------------------------- ###
+### ------------------------ 2) FUNÇÃO PARA O CÁLCULO DO ERRO MÉDIO DE ESTIMAÇÃO (MEAN SQUARED ERROR - EME) ---------------------------------- ###
 
 # Definição da função para o cálculo do erro médio de estimação (EME).
-def EME(numero_elementos_bloco, bloco_erro_estimacao):
+def EME(bloco_erro_estimacao):
+    
+    # Quantidade de elementos do bloco.
+    numero_elementos_bloco = len(bloco_erro_estimacao)
     
     # Cálculo do EME.
     valor_EME = (1/numero_elementos_bloco)*(sum(bloco_erro_estimacao))
@@ -126,12 +160,15 @@ def EME(numero_elementos_bloco, bloco_erro_estimacao):
     # A função retorna o valor do EME.
     return valor_EME
 
-### -------------------------------------------------------------------------------------------------------------------------------------------- ###
+### ------------------------------------------------------------------------------------------------------------------------------------------ ###
 
-### --------------------------- 3) FUNÇÃO PARA O CÁLCULO DO ERRO MÉDIO QUADRÁTICO (MEAN SQUARED ERROR - MSE) ----------------------------------- ###
+### ------------------------- 3) FUNÇÃO PARA O CÁLCULO DO ERRO MÉDIO QUADRÁTICO (MEAN SQUARED ERROR - MSE) ----------------------------------- ###
 
 # Definição da função para o cálculo do erro médio quadrático (MSE).
-def MSE(numero_elementos_bloco, bloco_erro_estimacao):
+def MSE(bloco_erro_estimacao):
+    
+    # Quantidade de elementos do bloco.
+    numero_elementos_bloco = len(bloco_erro_estimacao)
     
     # Eleva todos os elementos do bloco_erro_estimacao ao quadrado e salva o resultado na lista bloco_erro_estimacao_quadratico.
     bloco_erro_estimacao_quadratico = [elemento**2 for elemento in bloco_erro_estimacao]
@@ -142,12 +179,15 @@ def MSE(numero_elementos_bloco, bloco_erro_estimacao):
     # A função retorna o valor do MSE.
     return valor_MSE
 
-### -------------------------------------------------------------------------------------------------------------------------------------------- ###
+### ------------------------------------------------------------------------------------------------------------------------------------------ ###
 
-### --------------------------- 4) FUNÇÃO PARA O CÁLCULO DO ERRO MÉDIO ABSOLUTO (MEAN ABSOLUTE ERROR - MAE) ------------------------------------ ###
+### -------------------------- 4) FUNÇÃO PARA O CÁLCULO DO ERRO MÉDIO ABSOLUTO (MEAN ABSOLUTE ERROR - MAE) ----------------------------------- ###
 
 # Definição da função para o cálculo do erro médio absoluto (MAE).
-def MAE(numero_elementos_bloco, bloco_erro_estimacao):
+def MAE(bloco_erro_estimacao):
+    
+    # Quantidade de elementos do bloco.
+    numero_elementos_bloco = len(bloco_erro_estimacao)
     
     # Aplica o módulo em todos os elementos do bloco_erro_estimacao e salva o resultado na lista bloco_erro_estimacao_modulo.
     bloco_erro_estimacao_modulo = [np.abs(elemento) for elemento in bloco_erro_estimacao]
@@ -158,9 +198,9 @@ def MAE(numero_elementos_bloco, bloco_erro_estimacao):
     # A função retorna o valor do MAE.
     return valor_MAE
 
-### -------------------------------------------------------------------------------------------------------------------------------------------- ###
+### ------------------------------------------------------------------------------------------------------------------------------------------ ###
 
-### --------------------------- 5) FUNÇÃO PARA O CÁLCULO DA RELAÇÃO SINAL-RUÍDO (SIGNAL-TO-NOISE RATIO - SNR) ---------------------------------- ###
+### ------------------------- 5) FUNÇÃO PARA O CÁLCULO DA RELAÇÃO SINAL-RUÍDO (SIGNAL-TO-NOISE RATIO - SNR) ---------------------------------- ###
 
 # Definição da função para o cálculo da relação sinal-ruído (Signal-to-Noise Ratio - SNR).
 def SNR(bloco_parametro_referencia, bloco_erro_estimacao):
@@ -177,25 +217,31 @@ def SNR(bloco_parametro_referencia, bloco_erro_estimacao):
     # A função retorna o valor do SNR.
     return valor_SNR
 
-## --------------------------------------------------------------------------------------------------------------------------------------------- ###
+## ------------------------------------------------------------------------------------------------------------------------------------------- ###
 
-### --------------------------------------------- 6) FUNÇÃO PARA O CÁLCULO DO DESVIO PADRÃO (DP) ----------------------------------------------- ###
+### ------------------------------------------- 6) FUNÇÃO PARA O CÁLCULO DO DESVIO PADRÃO (DP) ----------------------------------------------- ###
 
 # Definição da função para o cálculo do desvio padrão.
-def DP(numero_elementos_bloco, bloco_erro_estimacao):
+def DP(bloco_erro_estimacao):
     
-    # Eleva todos os elementos do bloco_erro_estimacao ao quadrado e salva o resultado na lista bloco_erro_estimacao_quadratico.
-    bloco_erro_estimacao_quadratico = [elemento**2 for elemento in bloco_erro_estimacao]
-
+    # Média do bloco_erro_estimação.
+    valor_media_bloco_erro_estimacao = np.mean(bloco_erro_estimacao)
+    
+    # Quantidade de elementos do bloco.
+    numero_elementos_bloco = len(bloco_erro_estimacao)
+    
+    # Eleva todos os elementos do bloco_erro_estimacao menos a média ao quadrado e salva o resultado na lista bloco_erro_estimacao_menos_media_quadrado.
+    bloco_erro_estimacao_menos_media_quadrado = [(elemento-valor_media_bloco_erro_estimacao)**2 for elemento in bloco_erro_estimacao]
+    
     # Cálculo do desvio padrão.
-    valor_DP = np.sqrt((np.sum(bloco_erro_estimacao_quadratico))/(numero_elementos_bloco))
+    valor_DP = np.sqrt((np.sum(bloco_erro_estimacao_menos_media_quadrado))/(numero_elementos_bloco-1))
     
     # A função retorna o valor valor_DP.
     return valor_DP
 
-## --------------------------------------------------------------------------------------------------------------------------------------------- ###
+## ------------------------------------------------------------------------------------------------------------------------------------------- ###
 
-### --------- 7) INSTRUÇÃO PARA A VALIDAÇÃO CRUZADA K-FOLD ADAPTADA PARA O CÁLCULO DO DESEMPENHO DO MÉTODO LS SEM RESTRIÇÃO -------------------- ###
+### --------- 7) INSTRUÇÃO PARA A VALIDAÇÃO CRUZADA K-FOLD ADAPTADA PARA O CÁLCULO DO DESEMPENHO DO MÉTODO LS SEM RESTRIÇÃO ------------------ ###
 
 # Definição da instrução da técnica de validação cruzada K-Fold para o cálculo do desempenho do método LS sem restrição.
 def K_fold_desempenho_LS_SR(parametro, n_ocupacao, n_janelamento_ideal, opcao_avaliacao_desempenho, Matriz_Pulsos_Sinais_Janelado, vetor_parametro_referencia_janelado):
@@ -286,7 +332,7 @@ def K_fold_desempenho_LS_SR(parametro, n_ocupacao, n_janelamento_ideal, opcao_av
         if opcao_avaliacao_desempenho == 1:
             
             # A variável bloco_valor_EME recebe o valor de retorno da função EME.
-            bloco_valor_EME = EME(quantidade_elementos_bloco, bloco_vetor_erro_parametro)
+            bloco_valor_EME = EME(bloco_vetor_erro_parametro)
             # O valor de bloco_valor_EME é acrescentado a lista lista_blocos_valores_desempenho.
             lista_blocos_valores_desempenho.append(bloco_valor_EME)
         
@@ -294,7 +340,7 @@ def K_fold_desempenho_LS_SR(parametro, n_ocupacao, n_janelamento_ideal, opcao_av
         elif opcao_avaliacao_desempenho == 2:
             
             # A variável bloco_valor_MSE recebe o valor de retorno da função MSE.
-            bloco_valor_MSE = MSE(quantidade_elementos_bloco, bloco_vetor_erro_parametro)
+            bloco_valor_MSE = MSE(bloco_vetor_erro_parametro)
             # O valor de bloco_valor_MSE é acrescentado a lista lista_blocos_valores_desempenho.
             lista_blocos_valores_desempenho.append(bloco_valor_MSE)
             
@@ -302,7 +348,7 @@ def K_fold_desempenho_LS_SR(parametro, n_ocupacao, n_janelamento_ideal, opcao_av
         elif opcao_avaliacao_desempenho == 3:
             
             # A variável bloco_valor_MAE recebe o valor de retorno da função MAE.
-            bloco_valor_MAE = MAE(quantidade_elementos_bloco, bloco_vetor_erro_parametro)
+            bloco_valor_MAE = MAE(bloco_vetor_erro_parametro)
             # O valor de bloco_valor_MAE é acrescentado a lista lista_blocos_valores_desempenho.
             lista_blocos_valores_desempenho.append(bloco_valor_MAE)
             
@@ -318,7 +364,7 @@ def K_fold_desempenho_LS_SR(parametro, n_ocupacao, n_janelamento_ideal, opcao_av
         elif opcao_avaliacao_desempenho == 5:
             
            # A variável bloco_valor_DP recebe o valor de retorno da função DP.
-           bloco_valor_DP = DP(quantidade_elementos_bloco, bloco_vetor_erro_parametro)
+           bloco_valor_DP = DP(bloco_vetor_erro_parametro)
            # O valor de bloco_valor_DP é acrescentado a lista lista_blocos_valores_desempenho.
            lista_blocos_valores_desempenho.append(bloco_valor_DP)
             
@@ -330,11 +376,11 @@ def K_fold_desempenho_LS_SR(parametro, n_ocupacao, n_janelamento_ideal, opcao_av
     # Salva as informações dos dados estatísticos da análise do desempenho do método LS sem restrição.
     arquivo_saida_dados_desempenho_LS_SR(parametro, n_ocupacao, n_janelamento_ideal, media_desempenho, var_desempenho, DP_desempenho, mecanismo_desempenho)   
     
-### -------------------------------------------------------------------------------------------------------------------------------------------- ### 
+### ------------------------------------------------------------------------------------------------------------------------------------------ ### 
 
-### ---------------------------------------------- 8) INSTRUÇÃO PRINCIPAL DO CÓDIGO (MAIN) ----------------------------------------------------- ###
+### --------------------------------------------- 8) INSTRUÇÃO PRINCIPAL DO CÓDIGO ----------------------------------------------------------- ###
   
-# Definição da instrução principal (main) do código.
+# Definição da instrução principal do código.
 def principal_desempenho_LS_SR():
     
     # Impressão de mensagem no terminal.
@@ -351,7 +397,7 @@ def principal_desempenho_LS_SR():
     
         # Exibição de uma mensagem de alerta de que a opção solicitada é inválida.
         print("Essa opção é inválida!")
-        print("---------------------------------------------------------------------------------------------------------------------------------------")
+        print("---------------------------------------------------------------------------------------------------------------------------------")
         # A execução do programa é interrompida.
         exit(1)
     
@@ -368,7 +414,7 @@ def principal_desempenho_LS_SR():
         
         # Exibição de mensagem de alerta que a opção é inválida.
         print("Por favor digite uma opção válida!\n")
-        print("---------------------------------------------------------------------------------------------------------------------------------------")
+        print("---------------------------------------------------------------------------------------------------------------------------------")
         # A execução do programa é interrompida.
         exit(1)
     
@@ -434,8 +480,9 @@ def principal_desempenho_LS_SR():
     print(f"Tempo de execução: {tempo_execucao}")
      
 # Chamada da instrução principal do código.
-principal_desempenho_LS_SR()       
-### -------------------------------------------------------------------------------------------------------------------------------------------- ###
+principal_desempenho_LS_SR()  
+     
+### ------------------------------------------------------------------------------------------------------------------------------------------ ###
 
 # Impressão de uma linha que representa o fim do programa.
-print("\n---------------------------------------------------------------------------------------------------------------------------------------\n")
+print("\n-------------------------------------------------------------------------------------------------------------------------------------\n")

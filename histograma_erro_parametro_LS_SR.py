@@ -1,6 +1,6 @@
 # EXPERIMENTO ATLAS - Reconstrução de sinal - Métodos dos Mínimos Quadrados Sem restrição (Least Squares - LS) - Estimação da amplitude, fase ou pedestal.
 # Autor: Guilherme Barroso Morett.
-# Data: 08 de setembro de 2024.
+# Data: 03 de dezembro de 2024.
 
 # Objetivo do código: análise do erro de estimação do parâmetro da amplitude, fase ou pedestal pelo método LS sem restrição.
 
@@ -40,7 +40,7 @@ from termcolor import colored
 from metodo_LS_SR import *
 
 # Impressão de uma linha que representa o início do programa.
-print("\n---------------------------------------------------------------------------------------------------------------------------------------\n")
+print("\n-------------------------------------------------------------------------------------------------------------------------------------\n")
 
 # Título do programa.
 
@@ -50,7 +50,7 @@ titulo_programa = colored("Análise do erro de estimação da amplitude, fase ou
 # Impressão do título do programa.
 print(titulo_programa)
 
-### ---- 1) FUNÇÃO PARA O CÁLCULO DOS DADOS ESTATÍSTICOS DO ERRO DE ESTIMAÇÃO DA AMPLITUDE, FASE OU PEDESTAL PELO MÉTODO LS SEM RESTRIÇÃO ------ ###
+### ---- 1) FUNÇÃO PARA O CÁLCULO DOS DADOS ESTATÍSTICOS DO ERRO DE ESTIMAÇÃO DA AMPLITUDE, FASE OU PEDESTAL PELO MÉTODO LS SEM RESTRIÇÃO ---- ###
 
 # Definição da função para o cálculo dos dados estatísticos do erro de estimação da amplitude, fase ou pedestal pelo método LS sem restrição.
 def dados_estatisticos_erro_estimacao_parametro_LS_SR(vetor_erro_estimacao_parametro):
@@ -67,7 +67,7 @@ def dados_estatisticos_erro_estimacao_parametro_LS_SR(vetor_erro_estimacao_param
     # A função retorna a média, a variância e o desvio padrão dos dados do erro de estimação da amplitude, fase ou pedestal.
     return media_erro_estimacao_parametro, var_erro_estimacao_parametro, desvio_padrao_erro_estimacao_parametro
     
-### -------------------------------------------------------------------------------------------------------------------------------------------- ###
+### ------------------------------------------------------------------------------------------------------------------------------------------ ###
 
 ### --- 2) INSTRUÇÃO PARA A CONSTRUÇÃO DO HISTOGRAMA DO TIPO A DO ERRO DE ESTIMAÇÃO DA AMPLITUDE, FASE OU PEDESTAL PELO MÉTODO LS SEM RESTRIÇÃO -- ###
 
@@ -155,7 +155,7 @@ def histograma_A_erro_estimacao_parametro_LS_SR(n_ocupacao, parametro, vetor_err
     # Exibição do gráfico.
     plt.show()
 
-### -------------------------------------------------------------------------------------------------------------------------------------------- ###
+### ------------------------------------------------------------------------------------------------------------------------------------------ ###
 
 ### --- 3) INSTRUÇÃO PARA A CONSTRUÇÃO DO HISTOGRAMA DO TIPO B DO ERRO DE ESTIMAÇÃO DA AMPLITUDE, FASE OU PEDESTAL PELO MÉTODO LS SEM RESTRIÇÃO --- ###
 
@@ -243,7 +243,7 @@ def histograma_B_erro_estimacao_parametro_LS_SR(n_ocupacao, parametro, vetor_err
     legenda_J7 = f'Janelamento 7\nMédia: {media_erro_estimacao_parametro_J7}\nVariância: {var_erro_estimacao_parametro_J7}\nDesvio Padrão: {desvio_padrao_erro_estimacao_parametro_J7}'
     
     # A variável legenda_J15 recebe a legenda do histograma para o janelamento 15.
-    legenda_J15 = f'Janelamento 15\nMédia: {media_erro_estimacao_parametro_J15}\nVariância: {var_erro_estimacao_parametro_J15}\nDesvio Padrão: {desvio_padrao_erro_estimacao_parametro_J15}'
+    legenda_J15 = f'Janelamento 13\nMédia: {media_erro_estimacao_parametro_J15}\nVariância: {var_erro_estimacao_parametro_J15}\nDesvio Padrão: {desvio_padrao_erro_estimacao_parametro_J15}'
     
     # A variável legenda_J19 recebe a legenda do histograma para o janelamento 19.
     legenda_J19 = f'Janelamento 19\nMédia: {media_erro_estimacao_parametro_J19}\nVariância: {var_erro_estimacao_parametro_J19}\nDesvio Padrão: {desvio_padrao_erro_estimacao_parametro_J19}'
@@ -265,11 +265,11 @@ def histograma_B_erro_estimacao_parametro_LS_SR(n_ocupacao, parametro, vetor_err
     # Exibição do gráfico.
     plt.show()
 
-### -------------------------------------------------------------------------------------------------------------------------------------------- ###
+### ------------------------------------------------------------------------------------------------------------------------------------------ ###
 
-### -------------------------------------- 3) INSTRUÇÃO PRINCIPAL DO CÓDIGO (MAIN) ------------------------------------------------------------- ###
+### ------------------------------------------- 3) INSTRUÇÃO PRINCIPAL DO CÓDIGO ------------------------------------------------------------- ###
 
-# Definição da instrução principal (main) do código.
+# Definição da instrução principal do código.
 def principal_histograma_erro_estimacao_parametro_LS_SR():
     
     # Impressão de mensagem no terminal.
@@ -286,7 +286,7 @@ def principal_histograma_erro_estimacao_parametro_LS_SR():
     
         # Exibição de uma mensagem de alerta de que a opção solicitada é inválida.
         print("Essa opção é inválida!")
-        print("---------------------------------------------------------------------------------------------------------------------------------------")
+        print("---------------------------------------------------------------------------------------------------------------------------------")
         # A execução do programa é interrompida.
         exit(1)
     
@@ -322,7 +322,7 @@ def principal_histograma_erro_estimacao_parametro_LS_SR():
     
         # Exibição de uma mensagem de alerta de que a opção do tipo de histograma é inválida.
         print("A opção do tipo de histograma digitada é inválida!")
-        print("---------------------------------------------------------------------------------------------------------------------------------------")
+        print("---------------------------------------------------------------------------------------------------------------------------------")
         # A execução do programa é interrompida.
         exit(1)
     
@@ -348,7 +348,7 @@ def principal_histograma_erro_estimacao_parametro_LS_SR():
     
             # Exibição de uma mensagem de alerta de que a quantidade de janelamento solicitada é inválida.
             print("Quantidade de janelamento inválida! Opções de janelamento: 7, 9, 11, 13, 15, 17, 19.")
-            print("---------------------------------------------------------------------------------------------------------------------------------------")
+            print("-----------------------------------------------------------------------------------------------------------------------------")
             # A execução do programa é interrompida.
             exit(1)
             
@@ -402,7 +402,7 @@ def principal_histograma_erro_estimacao_parametro_LS_SR():
         # A variável n_janelamento_7 recebe a quantidade do janelamento 7.
         n_janelamento_J7 = 7
         # A variável n_janelamento_15 recebe a quantidade do janelamento 15.
-        n_janelamento_J15 = 15
+        n_janelamento_J15 = 13
         # A variável n_janelamento_19 recebe a quantidade do janelamento 19.
         n_janelamento_J19 = 19
         
@@ -455,9 +455,9 @@ def principal_histograma_erro_estimacao_parametro_LS_SR():
     
         histograma_B_erro_estimacao_parametro_LS_SR(n_ocupacao, parametro, vetor_erro_estimacao_parametro_J7, media_erro_estimacao_parametro_J7, var_erro_estimacao_parametro_J7, desvio_padrao_erro_estimacao_parametro_J7, vetor_erro_estimacao_parametro_J15, media_erro_estimacao_parametro_J15, var_erro_estimacao_parametro_J15, desvio_padrao_erro_estimacao_parametro_J15, vetor_erro_estimacao_parametro_J19, media_erro_estimacao_parametro_J19, var_erro_estimacao_parametro_J19, desvio_padrao_erro_estimacao_parametro_J19)
     
-# Chamada da instrução principal (main) do código.
+# Chamada da instrução principal do código.
 principal_histograma_erro_estimacao_parametro_LS_SR()
+### ------------------------------------------------------------------------------------------------------------------------------------------ ###
 
-### -------------------------------------------------------------------------------------------------------------------------------------------- ###
 # Impressão de uma linha que representa o fim do programa.
-print("\n---------------------------------------------------------------------------------------------------------------------------------------\n")
+print("\n-------------------------------------------------------------------------------------------------------------------------------------\n")

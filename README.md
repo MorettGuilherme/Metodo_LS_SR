@@ -1,6 +1,5 @@
-O Método dos Mínimos Quadrados (Least Squares - LS) tem como objetivo minimizar os resíduos quadráticos da diferença entre os dados experimentais e os previstos pelo modelo. Dessa maneira, a sua eficicência está atrelada a qualidade dos dados simulados. Em sua versão sem restrições, não há 
-relações impostos para o cálculo dos pesos.
-Os resultados foram satisfatórios tanto para a estimação da amplitude como para fase. E especialmente para a fase, o janelamento não tem um influência tão siginificativa para a diminuição do desvio padrão.
+O Método dos Mínimos Quadrados (Least Squares - LS) tem como objetivo minimizar os resíduos quadráticos da diferença entre os dados experimentais e os previstos pelo modelo. Dessa maneira, a sua eficicência está atrelada a qualidade dos dados simulados. Em sua versão sem restrições, não há relações impostas para o cálculo dos pesos.
+Os resultados foram satisfatórios tanto para a estimação da amplitude como para fase. E especialmente para a fase, o janelamento não tem uma influência tão significativa para a diminuição do desvio padrão.
 
 A seguir são listadas as pastas e também os arquivos contidos nesse repositório, assim como suas respectivas funções:
 

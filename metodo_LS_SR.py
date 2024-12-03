@@ -1,6 +1,6 @@
 # EXPERIMENTO ATLAS - Reconstrução de sinal - Métodos dos Mínimos Quadrados Sem restrição (Least Squares - LS) - Estimação da amplitude, fase ou pedestal.
 # Autor: Guilherme Barroso Morett.
-# Data: 08 de setembro de 2024.
+# Data: 03 de dezembro de 2024.
 
 # Objetivo do código: Aplicação do método LS sem restrição para a estimação da amplitude, fase ou pedestal.
 
@@ -25,7 +25,7 @@ import numpy as np
 from leitura_dados_ocupacao_LS_SR import *
 from leitura_dados_ruidos_LS_SR import *
 
-### ------------------------------------------ 3) FUNÇÃO PARA O MÉTODO LS SEM RESTRIÇÃO -------------------------------------------------------- ###
+### ------------------------------------------ 3) FUNÇÃO PARA O MÉTODO LS SEM RESTRIÇÃO ------------------------------------------------------ ###
 
 # Definição da função para o método LS sem restrição.
 def metodo_LS_SR(n_janelamento, Matriz_Pulsos_Sinais_Treino_Janelado, Matriz_Pulsos_Sinais_Teste_Janelado, vetor_parametro_referencia_treino_janelado, vetor_parametro_referencia_teste_janelado):
@@ -92,4 +92,4 @@ def metodo_LS_SR(n_janelamento, Matriz_Pulsos_Sinais_Treino_Janelado, Matriz_Pul
     # A função retorna o vetor do erro de estimação do parametro.
     return vetor_erro_estimacao_parametro
  
-### -------------------------------------------------------------------------------------------------------------------------------------------- ###
+### ------------------------------------------------------------------------------------------------------------------------------------------ ###

@@ -1,6 +1,6 @@
-# EXPERIMENTO ATLAS - Reconstrução de sinal - Melhor Estimador Linear Não Enviesado - Best Linear Unbiased Estimator (BLUE1) - Estimação da amplitude, fase ou pedestal.
+# EXPERIMENTO ATLAS - Reconstrução de sinal - Métodos dos Mínimos Quadrados Sem restrição (Least Squares - LS) - Estimação da amplitude, fase ou pedestal.
 # Autor: Guilherme Barroso Morett.
-# Data: 23 de agosto de 2024.
+# Data: 03 de dezembro de 2024.
 
 # Objetivo do código: realização da leitura dos dados de ocupação no formato free running.
 
@@ -34,7 +34,7 @@ Saída: matriz de treino e teste dos pulsos de sinais e o vetor de treino e test
 import numpy as np
 import os
 
-### ------------------------------------------ 1) FUNÇÃO PARA A LEITURA DOS DADOS DE OCUPAÇÃO -------------------------------------------------- ###
+### ---------------------------------------- 1) FUNÇÃO PARA A LEITURA DOS DADOS DE OCUPAÇÃO -------------------------------------------------- ###
 
 # Definição da função para a leitura dos dados de ocupação no formato free running.
 def leitura_dados_ocupacao(numero_ocupacao):
@@ -72,9 +72,9 @@ def leitura_dados_ocupacao(numero_ocupacao):
     # A função retorna a matriz Matriz_Dados_OC.
     return Matriz_Dados_OC
 
-### -------------------------------------------------------------------------------------------------------------------------------------------- ###
+### ------------------------------------------------------------------------------------------------------------------------------------------ ###
 
-### ------------------------------------ 2) FUNÇÃO PARA A RETIRADA DO PEDESTAL DOS PULSOS DE SINAIS -------------------------------------------- ###
+### ---------------------------------- 2) FUNÇÃO PARA A RETIRADA DO PEDESTAL DOS PULSOS DE SINAIS -------------------------------------------- ###
 
 # Definição da função para a retirada do pedestal dos dados de entrada dos pulsos de sinais.
 def retirada_pedestal(Matriz_Dados_OC):
@@ -100,9 +100,9 @@ def retirada_pedestal(Matriz_Dados_OC):
     # A função retorna a Matriz_Dados_OC sem o valor do pedestal.
     return Matriz_Dados_OC_Sem_Pedestal
 
-### -------------------------------------------------------------------------------------------------------------------------------------------- ###
+### ------------------------------------------------------------------------------------------------------------------------------------------ ###
 
-### ---------------- 3) FUNÇÃO PARA A CONSTRUÇÃO DA MATRIZ DOS PULSOS DE SINAIS E O VETOR DO PARÂMETRO DE REFERÊNCIA --------------------------- ###
+### --------------- 3) FUNÇÃO PARA A CONSTRUÇÃO DA MATRIZ DOS PULSOS DE SINAIS E O VETOR DO PARÂMETRO DE REFERÊNCIA -------------------------- ###
 
 # Definição da função que separa o vetor das amostras de pulsos de sinais e os pulsos de referência.
 def amostras_pulsos_e_referencia(Matriz_Dados_OC):
@@ -175,9 +175,9 @@ def amostras_janelamento(amostras, parametro_referencia, n_janelamento):
     # A função retorna a matriz Matriz_Dados_Pulsos e o vetor vetor_parametro_referencia.
     return Matriz_Dados_Pulsos, vetor_parametro_referencia
 
-### -------------------------------------------------------------------------------------------------------------------------------------------- ###
+### ------------------------------------------------------------------------------------------------------------------------------------------ ###
 
-### ---------------------------------- 4) FUNÇÃO PARA SEPARAÇÃO EM DADOS DE TREINO E DE TESTE -------------------------------------------------- ###
+### -------------------------------- 4) FUNÇÃO PARA SEPARAÇÃO EM DADOS DE TREINO E DE TESTE -------------------------------------------------- ###
 
 # Definição da função para a separação dos dados em treino e teste.
 def dados_treino_teste_histograma(Matriz_Dados_Pulsos, vetor_parametro_referencia):
@@ -215,4 +215,4 @@ def dados_treino_teste_histograma(Matriz_Dados_Pulsos, vetor_parametro_referenci
     # A função retorna a matriz dos dados de pulsos de sinais dividida em treino e teste, assim como o vetor dos parâmetros de referência.    
     return Matriz_Dados_Pulsos_Treino, Matriz_Dados_Pulsos_Teste, vetor_parametro_referencia_treino, vetor_parametro_referencia_teste
         
-### -------------------------------------------------------------------------------------------------------------------------------------------- ###
+### ------------------------------------------------------------------------------------------------------------------------------------------ ###

@@ -1,6 +1,6 @@
 # EXPERIMENTO ATLAS - Reconstrução de sinal - Métodos dos Mínimos Quadrados Sem restrição (Least Squares - LS) - Estimação da amplitude, fase ou pedestal.
 # Autor: Guilherme Barroso Morett.
-# Data: 08 de setembro de 2024.
+# Data: 03 de dezembro de 2024.
 
 # Objetivo do código: construção do gráfico da validação cruzada K-Fold para o método LS sem restrição para a estimação da amplitude, fase ou pedestal.
 
@@ -35,7 +35,7 @@ import matplotlib.pyplot as plt
 from termcolor import colored
 
 # Impressão de uma linha que representa o início do programa.
-print("\n---------------------------------------------------------------------------------------------------------------------------------------\n")
+print("\n-------------------------------------------------------------------------------------------------------------------------------------\n")
 
 # Título do programa.
 
@@ -45,7 +45,7 @@ titulo_programa = colored("Plote do gráfico da validação cruzada K-Fold para 
 # Impressão do título do programa.
 print(titulo_programa)
 
-### ---------------- 1) FUNÇÃO PARA A LEITURA DOS DADOS ESTATÍSTICOS DA VALIDAÇÃO CRUZADA K-FOLD PELO MÉTODO LS SEM RESTRIÇÃO ------------------ ###
+### -------------- 1) FUNÇÃO PARA A LEITURA DOS DADOS ESTATÍSTICOS DA VALIDAÇÃO CRUZADA K-FOLD PELO MÉTODO LS SEM RESTRIÇÃO ------------------ ###
 
 # Definição da função para a leitura dos dados estatísticos do K-Fold pelo método LS sem restrição.
 def leitura_dados_estatisticos_k_fold_LS_SR(parametro, n_ocupacao, dado_estatistico):
@@ -80,9 +80,9 @@ def leitura_dados_estatisticos_k_fold_LS_SR(parametro, n_ocupacao, dado_estatist
     # A função retorna a matriz Matriz_Dados_K_Fold.
     return Matriz_Dados_K_Fold
 
-### -------------------------------------------------------------------------------------------------------------------------------------------- ###
+### ------------------------------------------------------------------------------------------------------------------------------------------ ###
 
-### ----------------- 2) INSTRUÇÃO PARA A CONSTRUÇÃO DO GRÁFICO DO TIPO A DA VALIDAÇÃO CRUZADA K-FOLD PELO MÉTODO LS SEM RESTRIÇÃO ------------- ###
+### --------------- 2) INSTRUÇÃO PARA A CONSTRUÇÃO DO GRÁFICO DO TIPO A DA VALIDAÇÃO CRUZADA K-FOLD PELO MÉTODO LS SEM RESTRIÇÃO ------------- ###
 
 # Definição da instrução para a construção do gráfico tipo A pela validação cruzada K-Fold para o método LS sem restrição.
 def grafico_A_k_fold_LS_SR(parametro, opcao, Matriz_Dados_K_Fold_OC_0, Matriz_Dados_K_Fold_OC_10, Matriz_Dados_K_Fold_OC_20, Matriz_Dados_K_Fold_OC_30, Matriz_Dados_K_Fold_OC_40, Matriz_Dados_K_Fold_OC_50, Matriz_Dados_K_Fold_OC_60, Matriz_Dados_K_Fold_OC_70, Matriz_Dados_K_Fold_OC_80, Matriz_Dados_K_Fold_OC_90, Matriz_Dados_K_Fold_OC_100):
@@ -222,9 +222,9 @@ def grafico_A_k_fold_LS_SR(parametro, opcao, Matriz_Dados_K_Fold_OC_0, Matriz_Da
     # Comando para a exibição do gráfico.
     plt.show()  
     
-### -------------------------------------------------------------------------------------------------------------------------------------------- ###
+### ------------------------------------------------------------------------------------------------------------------------------------------ ###
 
-### --------------- 2) INSTRUÇÃO PARA A CONSTRUÇÃO DO GRÁFICO DO TIPO B DA VALIDAÇÃO CRUZADA K-FOLD PELO MÉTODO LS SEM RESTRIÇÃO --------------- ###
+### ------------- 2) INSTRUÇÃO PARA A CONSTRUÇÃO DO GRÁFICO DO TIPO B DA VALIDAÇÃO CRUZADA K-FOLD PELO MÉTODO LS SEM RESTRIÇÃO --------------- ###
 
 # Definição da instrução para a construção do gráfico do tipo B pela validação cruzada K-Fold para o método LS sem restrição.
 def grafico_B_k_fold_LS_SR(parametro, opcao, Matriz_Dados_K_Fold_OC_0, Matriz_Dados_K_Fold_OC_10, Matriz_Dados_K_Fold_OC_20, Matriz_Dados_K_Fold_OC_30, Matriz_Dados_K_Fold_OC_40, Matriz_Dados_K_Fold_OC_50, Matriz_Dados_K_Fold_OC_60, Matriz_Dados_K_Fold_OC_70, Matriz_Dados_K_Fold_OC_80, Matriz_Dados_K_Fold_OC_90, Matriz_Dados_K_Fold_OC_100):
@@ -350,11 +350,11 @@ def grafico_B_k_fold_LS_SR(parametro, opcao, Matriz_Dados_K_Fold_OC_0, Matriz_Da
     # Comando para a exibição do gráfico.
     plt.show()  
     
-### -------------------------------------------------------------------------------------------------------------------------------------------- ###
+### ------------------------------------------------------------------------------------------------------------------------------------------ ###
 
-### ---------------------------------------------------- 4) INSTRUÇÃO PRINCIPAL DO CÓDIGO ------------------------------------------------------ ###
+### -------------------------------------------------- 4) INSTRUÇÃO PRINCIPAL DO CÓDIGO ------------------------------------------------------ ###
 
-# Definição da instrução principal (main) do código.
+# Definição da instrução principal do código.
 def principal_grafico_k_fold_LS_SR():
     
     # Impressão de mensagem no terminal.
@@ -371,7 +371,7 @@ def principal_grafico_k_fold_LS_SR():
     
         # Exibição de uma mensagem de alerta de que a opção solicitada é inválida.
         print("Essa opção é inválida!")
-        print("---------------------------------------------------------------------------------------------------------------------------------------")
+        print("---------------------------------------------------------------------------------------------------------------------------------")
         # A execução do programa é interrompida.
         exit(1)
     
@@ -389,7 +389,7 @@ def principal_grafico_k_fold_LS_SR():
         
         # Exibição de uma mensagem de alerta de que o tipo de gráfico solicitado é inválido.
         print("Por favor digite uma tipo válido de gráfico: A ou B!")
-        print("---------------------------------------------------------------------------------------------------------------------------------------")
+        print("---------------------------------------------------------------------------------------------------------------------------------")
         # A execução do programa é interrompida.
         exit(1)
     
@@ -407,7 +407,7 @@ def principal_grafico_k_fold_LS_SR():
     
         # Exibição de uma mensagem de alerta de que a opção solicitada é inválida.
         print("Essa opção é inválida!")
-        print("---------------------------------------------------------------------------------------------------------------------------------------")
+        print("---------------------------------------------------------------------------------------------------------------------------------")
         # A execução do programa é interrompida.
         exit(1)
         
@@ -473,10 +473,10 @@ def principal_grafico_k_fold_LS_SR():
         # Chamada da função grafico_B_k_fold_LS_SR.
         grafico_B_k_fold_LS_SR(parametro, opcao_dado_estatistico, Matriz_Dados_K_Fold_OC_0, Matriz_Dados_K_Fold_OC_10, Matriz_Dados_K_Fold_OC_20, Matriz_Dados_K_Fold_OC_30, Matriz_Dados_K_Fold_OC_40, Matriz_Dados_K_Fold_OC_50, Matriz_Dados_K_Fold_OC_60, Matriz_Dados_K_Fold_OC_70, Matriz_Dados_K_Fold_OC_80, Matriz_Dados_K_Fold_OC_90, Matriz_Dados_K_Fold_OC_100)
     
-### -------------------------------------------------------------------------------------------------------------------------------------------- ###
-
 # Chamada da instrução principal do código.
 principal_grafico_k_fold_LS_SR()
 
+### ------------------------------------------------------------------------------------------------------------------------------------------ ###
+
 # Impressão de uma linha que representa o fim do programa.
-print("\n---------------------------------------------------------------------------------------------------------------------------------------\n")   
+print("\n-------------------------------------------------------------------------------------------------------------------------------------\n")   

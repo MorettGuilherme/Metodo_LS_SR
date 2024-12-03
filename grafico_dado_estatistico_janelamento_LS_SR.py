@@ -1,6 +1,6 @@
 # EXPERIMENTO ATLAS - Reconstrução de sinal - Métodos dos Mínimos Quadrados Sem restrição (Least Squares - LS) - Estimação da amplitude, fase ou pedestal.
 # Autor: Guilherme Barroso Morett.
-# Data: 08 de setembro de 2024.
+# Data: 03 de dezembro de 2024.
 
 # Objetivo do código: gráfico dos dados estatísticos ao longo das ocupações de acordo com o janelamento para o método LS sem restrição.
 
@@ -31,7 +31,7 @@ import os
 from termcolor import colored
 
 # Impressão de uma linha que representa o início do programa.
-print("\n---------------------------------------------------------------------------------------------------------------------------------------\n")
+print("\n-------------------------------------------------------------------------------------------------------------------------------------\n")
 
 # Título do programa.
 
@@ -41,7 +41,7 @@ titulo_programa = colored("Plote do gráfico do dado estatístico do erro de est
 # Impressão do título do programa.
 print(titulo_programa)
 
-### ---- 1) FUNÇÃO PARA A LEITURA DOS DADOS ESTATÍSTICOS DE TODAS AS OCUPAÇÕES PARA UM DETERMINADO JANELAMENTO PELO MÉTODO LS SEM RESTRIÇÃO ---- ###
+### --- 1) FUNÇÃO PARA A LEITURA DOS DADOS ESTATÍSTICOS DE TODAS AS OCUPAÇÕES PARA UM DETERMINADO JANELAMENTO PELO MÉTODO LS SEM RESTRIÇÃO --- ###
 
 # Definição da função para a leitura dos dados estatísticos de todas as ocupações para um determinado janelamento pelo método LS sem restrição.
 def leitura_dados_estatisticos_janelamento_LS_SR(parametro, n_janelamento):
@@ -76,7 +76,7 @@ def leitura_dados_estatisticos_janelamento_LS_SR(parametro, n_janelamento):
     # A função retorna a matriz Matriz_Dados_Estatisticos_Janelamento.
     return Matriz_Dados_Estatisticos_Janelamento
 
-### -------------------------------------------------------------------------------------------------------------------------------------------- ###
+### ------------------------------------------------------------------------------------------------------------------------------------------ ###
 
 ### --- 2) INSTRUÇÃO PARA O PLOTE DOS GRÁFICO DO DADO ESTATÍSTICO AO LONGO DAS OCUPAÇÕES PARA UM DETERMINADO JANELAMENTO PELO MÉTODO LS SEM RESTRIÇÃO --- ###
 
@@ -184,11 +184,11 @@ def grafico_dado_estatistico_janelamento_LS_SR(parametro, dado_estatistico, Matr
     # Comando para o plote.
     plt.show()
         
-### -------------------------------------------------------------------------------------------------------------------------------------------- ###        
+### ------------------------------------------------------------------------------------------------------------------------------------------ ###        
         
-### ---------------------------------------------------- 3) INSTRUÇÃO PRINCIPAL DO CÓDIGO  ----------------------------------------------------- ###
+### ------------------------------------------------- 3) INSTRUÇÃO PRINCIPAL DO CÓDIGO ------------------------------------------------------- ###
 
-# Definição da instrução principal (main) do código.
+# Definição da instrução principal do código.
 def principal_grafico_dado_estatistico_janelamento_LS_SR():
     
     # Impressão de mensagem no terminal.
@@ -205,7 +205,7 @@ def principal_grafico_dado_estatistico_janelamento_LS_SR():
     
         # Exibição de uma mensagem de alerta de que a opção solicitada é inválida.
         print("Essa opção é inválida!")
-        print("---------------------------------------------------------------------------------------------------------------------------------------")
+        print("---------------------------------------------------------------------------------------------------------------------------------")
         # A execução do programa é interrompida.
         exit(1)
     
@@ -223,7 +223,7 @@ def principal_grafico_dado_estatistico_janelamento_LS_SR():
     
         # Exibição de uma mensagem de alerta de que a opção solicitada é inválida.
         print("Essa opção é inválida!")
-        print("---------------------------------------------------------------------------------------------------------------------------------------")
+        print("---------------------------------------------------------------------------------------------------------------------------------")
         # A execução do programa é interrompida.
         exit(1)
         
@@ -256,7 +256,7 @@ def principal_grafico_dado_estatistico_janelamento_LS_SR():
     
         # Exibição de uma mensagem de alerta de que a quantidade de janelamento solicitada é inválida.
         print("Quantidade de janelamento inválida! Opções de janelamento: 7, 9, 11, 13, 15, 17, 19.")
-        print("---------------------------------------------------------------------------------------------------------------------------------------")
+        print("---------------------------------------------------------------------------------------------------------------------------------")
         # A execução do programa é interrompida.
         exit(1)
         
@@ -268,6 +268,8 @@ def principal_grafico_dado_estatistico_janelamento_LS_SR():
 # Chamada da instrução principal do código.
 principal_grafico_dado_estatistico_janelamento_LS_SR()
 
+### ------------------------------------------------------------------------------------------------------------------------------------------ ###
+
 # Impressão de uma linha que representa o fim do programa.
-print("\n---------------------------------------------------------------------------------------------------------------------------------------\n")
+print("\n-------------------------------------------------------------------------------------------------------------------------------------\n")
     
